@@ -29,14 +29,9 @@
 </thead>
 <tbody>
 <% 
+	String database = "friendspammer";
 
-String userName = "YOUR USER";
-String password = "YOUR PASS";
-String database = "friendspammer";
-
-MongoCredential credential = MongoCredential.createCredential(userName, database, password.toCharArray());
-
-MongoClient mongoClient = new MongoClient(new ServerAddress("YOUR HOST", 27939), credential, MongoClientOptions.builder().build());
+	MongoClient mongoClient = new MongoClient("mongo");
 	
 	MongoDatabase db = mongoClient.getDatabase( database );
 	
