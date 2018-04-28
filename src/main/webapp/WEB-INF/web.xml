@@ -1,7 +1,23 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
+<?xml version="1.0" encoding="UTF-8"?>
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>EmailServlet</servlet-name>
+    <servlet-class>nl.hu.bep.friendspammer.web.EmailServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>HistoryServlet</servlet-name>
+    <servlet-class>nl.hu.bep.friendspammer.web.HistoryServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>EmailServlet</servlet-name>
+    <url-pattern>/EmailServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>HistoryServlet</servlet-name>
+    <url-pattern>/HistoryServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
