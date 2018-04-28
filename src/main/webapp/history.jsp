@@ -1,11 +1,5 @@
-<%@page import="java.util.Iterator"%>
-<%@page import="com.mongodb.MongoClientOptions"%>
-<%@page import="com.mongodb.ServerAddress"%>
-<%@page import="org.bson.Document"%>
-<%@page import="com.mongodb.client.MongoCollection"%>
-<%@page import="com.mongodb.client.MongoDatabase"%>
-<%@page import="com.mongodb.MongoClient"%>
-<%@page import="com.mongodb.MongoCredential"%>
+<%@page import="nl.hu.bep.friendspammer.MongoSaver"%>
+<%@page import="nl.hu.bep.friendspammer.Email"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -27,41 +21,21 @@
 	</tr>
 </thead>
 <tbody>
-<% 
-	String database = "friendspammer";
-
-	MongoClient mongoClient = new MongoClient("mongo");
-	
-	MongoDatabase db = mongoClient.getDatabase( database );
-	
-	MongoCollection<Document> c = db.getCollection("email");
-	
-	Iterator<Document> it = c.find().iterator();
-	
-	while(it.hasNext())
-	{
-		Document email = it.next();
-		
+<% 	
+	for (Email email: MongoSaver.getEmails())
+	{		
 		%>
-			<tr>
-				<td><%=email.get("to") %></td>
-				<td><%=email.get("from") %></td>
-				<td><%=email.get("subject") %></td>
-				<td><%=email.get("text") %></td>
-				<td><%=email.get("asHtml") %></td>
-				
-			</tr>
-		
-		
-		
-		
+		<tr>
+			<td><%=email.getTo() %></td>
+			<td><%=email.getFrom() %></td>
+			<td><%=email.getSubject() %></td>
+			<td><%=email.getMessageBody() %></td>
+			<td><%=email.isAsHtml() %></td>
+		</tr>		
 		<%
 		
 		
 	}
-
-
-	mongoClient.close();
 
 
 
