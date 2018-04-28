@@ -12,10 +12,10 @@
 <p>Hier kan je email naar al je vrienden! Bij aan kan je één enkele emailadres opgeven maar je kan er ook een comma seperated lijst opgeven.</p>
 
 <form action="EmailServlet" method="post">
-	onderwerp: <input type="text" name="onderwerp"/><br/>
-	aan: <input type="text" name="aan" value="ee48d7379f-9f0226@inbox.mailtrap.io" size="100"/><br/>
-	bericht: <textarea name="tekst" rows="5" cols="60"></textarea><br/>
-	verstuur als html?: <input type="checkbox" 	name="html" value="true"/>	<br/>
+	aan: <input type="text" name="to" value="naam@voorbeeld.nl" size="100"/><br/>
+	onderwerp: <input type="text" name="subject"/><br/>
+	bericht: <textarea name="messageBody" rows="5" cols="60"></textarea><br/>
+	verstuur als html?: <input type="checkbox" 	name="asHtml" value="true"/>	<br/>
 	email <input type="radio" name="methode" value="email" checked="checked"/> of sms <input type="radio" name="methode" value="sms" disabled/> (sorry sms werkt nog niet)
 	<br/>
 	<input value="spammen maar!" type="submit">

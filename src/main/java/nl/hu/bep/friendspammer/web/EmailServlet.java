@@ -16,10 +16,10 @@ public class EmailServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getParameter("methode") != null && request.getParameter("methode").equals("email")) {
             Email email = new Email();
-            email.setSubject(request.getParameter("onderwerp"));
-            email.setTo(Email.splitTo(request.getParameter("aan")));
-            email.setMessageBody(request.getParameter("tekst"));
-            email.setAsHtml(Boolean.valueOf(request.getParameter("html")));
+            email.setTo(Email.splitTo(request.getParameter("to")));
+            email.setSubject(request.getParameter("subject"));
+            email.setMessageBody(request.getParameter("messageBody"));
+            email.setAsHtml(Boolean.valueOf(request.getParameter("asHtml")));
             
             try {
                 EmailSender.sendEmail(email);
