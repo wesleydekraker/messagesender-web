@@ -1,26 +1,17 @@
+<%@page import="nl.hu.bep.friendspammer.Email"%>
 <%@page import="nl.hu.bep.friendspammer.EmailSender"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
-    
 <%
-
 	if (request.getParameter("methode") != null && request.getParameter("methode").equals("email")) {
-		String subject = request.getParameter("onderwerp");
-		String to = request.getParameter("aan");
-		String message = request.getParameter("tekst");
-		boolean html = Boolean.valueOf(request.getParameter("html"));
+	    Email email = new Email();
+		email.setSubject(request.getParameter("onderwerp"));
+		email.setTo(Email.splitTo(request.getParameter("aan")));
+		email.setMessageBody(request.getParameter("tekst"));
+		email.setAsHtml(Boolean.valueOf(request.getParameter("html")));
 		
-		if(to.contains(",")) {
-			String[] toList = to.split(",");
-			System.out.println(toList);
-			EmailSender.sendEmail(subject, toList, message, html);
-		} else {
-			EmailSender.sendEmail(subject, to, message, html);
-		}
-	
+		EmailSender.sendEmail(email);	
 	}
-
 %>    
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
