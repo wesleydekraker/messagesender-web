@@ -52,7 +52,7 @@ public class EmailRequest {
             return;
         }
         
-        List<String> emailAddresses = Email.splitTo(to);
+        List<String> emailAddresses = Email.splitAddresses(to);
         for (String emailAddress: emailAddresses) {
             if (Email.isValidEmailAddress(emailAddress)) {
                 addTo(emailAddress);
