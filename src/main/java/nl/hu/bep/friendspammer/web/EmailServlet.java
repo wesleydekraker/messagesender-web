@@ -66,6 +66,8 @@ public class EmailServlet extends HttpServlet {
             } catch (MessagingException e) {
                 request.setAttribute("message", "Er ging iets mis bij het versturen!");                
             }
+        } else {
+            request.setAttribute("message", "De methode SMS wordt nog niet ondersteund!");
         }
         
         try {
