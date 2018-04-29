@@ -19,7 +19,7 @@ public class EmailServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
     
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {        
         EmailRequest emailRequest = new EmailRequest(request);
         List<String> errors = emailRequest.getErrors();
         

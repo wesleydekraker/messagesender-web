@@ -42,7 +42,9 @@
 						<label for="fname">Aan</label>
 					</div>
 					<div class="col-input">
-						<input type="text" name="to" placeholder="naam@voorbeeld.nl">
+						<input type="text" name="to" placeholder="naam@voorbeeld.nl"
+							<c:if test="${param.to != null}">value="<c:out value="${param.to}"/>"</c:if>
+							>
 					</div>
 				</div>
 				<div class="row">
@@ -50,7 +52,9 @@
 						<label>Onderwerp</label>
 					</div>
 					<div class="col-input">
-						<input type="text" name="subject" placeholder="Voorbeeld">
+						<input type="text" name="subject" placeholder="Voorbeeld"
+							<c:if test="${param.subject != null}">value="<c:out value="${param.subject}"/>"</c:if>
+							>
 					</div>
 				</div>
 				<div class="row">
@@ -58,7 +62,8 @@
 						<label>Bericht</label>
 					</div>
 					<div class="col-input">
-						<textarea name="messageBody" placeholder="Schrijf iets..." id="messageBody"></textarea>
+						<textarea name="messageBody" placeholder="Schrijf iets..." id="messageBody"
+							><c:out value="${param.messageBody}"/></textarea>
 					</div>
 				</div>
 				<div class="row">
@@ -66,7 +71,9 @@
 						<label>Verstuur als HTML</label>
 					</div>
 					<div class="col-input">
-						<input type="checkbox" name="asHtml" value="true" />
+						<input type="checkbox" name="asHtml"
+							<c:if test="${param.asHtml != null}">checked</c:if>
+							>
 					</div>
 				</div>
 				<div class="row">

@@ -100,8 +100,8 @@ public class EmailRequest {
         return asHtml;
     }
     
-    private void setAsHtml(String asHtml) {        
-        this.asHtml = Boolean.valueOf(asHtml);
+    private void setAsHtml(String asHtml) {
+        this.asHtml = asHtml != null;
     }    
 
     public List<String> getErrors() {
