@@ -19,29 +19,37 @@
 				<li><a href="#" class="active">Verzonden e-mails</a></li>
 			</ul>
 		</nav>
-
+		
 		<article>
 			<h1>Verzonden e-mails</h1>
-			<table id="history">
-				<tr>
-					<th>Aan</th>
-					<th>Van</th>
-					<th>Onderwerp</th>
-					<th>Bericht</th>
-					<th>HTML</th>
-				</tr>
-				<c:forEach items="${emails}" var="email">
-					<tr>
-						<td><c:forEach items="${email.to}" var="to">
-								<c:out value="${to}" /><br>
-							</c:forEach></td>
-						<td><c:out value="${email.from}" /></td>
-						<td><c:out value="${email.subject}" /></td>
-						<td><c:out value="${email.messageBody}" /></td>
-						<td><c:out value="${email.asHtml}" /></td>
-					</tr>
-				</c:forEach>
-			</table>
+			
+			<c:choose>
+				<c:when test="${empty emails}">
+					<p>Er zijn geen e-mails gevonden.</p>
+				</c:when>
+				<c:otherwise>
+					<table id="history">
+						<tr>
+							<th>Aan</th>
+							<th>Van</th>
+							<th>Onderwerp</th>
+							<th>Bericht</th>
+							<th>HTML</th>
+						</tr>
+						<c:forEach items="${emails}" var="email">
+							<tr>
+								<td><c:forEach items="${email.to}" var="to">
+										<c:out value="${to}" /><br>
+									</c:forEach></td>
+								<td><c:out value="${email.from}" /></td>
+								<td><c:out value="${email.subject}" /></td>
+								<td><c:out value="${email.messageBody}" /></td>
+								<td><c:out value="${email.asHtml}" /></td>
+							</tr>
+						</c:forEach>
+					</table>
+				</c:otherwise>
+			</c:choose>
 		</article>
 	</div>
 	
