@@ -38,7 +38,7 @@ public class EmailServlet extends HttpServlet {
         EmailRequest emailRequest = new EmailRequest(request);
         List<String> errors = emailRequest.getErrors();
         
-        if (errors.isEmpty()) {
+        if (!errors.isEmpty()) {
             request.setAttribute("errors", errors);
             
             try {
