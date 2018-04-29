@@ -52,14 +52,29 @@ public class EmailRequest {
             return;
         }
         
-        this.to = Email.splitTo(to);
+        List<String> emailAddresses = Email.splitTo(to);
+        for (String emailAddress: emailAddresses) {
+            if (Email.isValidEmailAddress(emailAddress)) {
+                addTo(emailAddress);
+                continue;
+            }
+            
+            errors.add("Het volgende e-mailadres is invalide: " + emailAddress);
+        }
+    }
+    
+    private void addTo(String to) {
+        if (this.to == null) {
+            this.to = new ArrayList<>();
+        }
+        this.to.add(to);
     }
     
     public String getSubject() {
         return subject;
     }
     
-    public void setSubject(String subject) {
+    private void setSubject(String subject) {
         if (isEmpty(subject)) {
             errors.add("Het veld \"Onderwerp\" is niet ingevuld!");
             return;
@@ -72,7 +87,7 @@ public class EmailRequest {
         return messageBody;
     }
     
-    public void setMessageBody(String messageBody) {
+    private void setMessageBody(String messageBody) {
         if (isEmpty(messageBody)) {
             errors.add("Het veld \"Bericht\" is niet ingevuld!");
             return;

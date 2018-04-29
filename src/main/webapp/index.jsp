@@ -22,13 +22,13 @@
 
 		<article>
 			<c:if test="${message != null}">
-				<div id="message">${message}</div>
+				<div id="message"><c:out value="${message}"/></div>
 			</c:if>
 			<c:if test="${errors != null}">
 				<div id="errors">
 				<c:forEach items="${errors}" var="error">
 					<ul>
-						<li><c:out value="${error}" /></li>
+						<li><c:out value="${error}"/></li>
 					</ul>
 				</c:forEach>
 				</div>
