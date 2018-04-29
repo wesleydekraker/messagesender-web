@@ -1,6 +1,7 @@
 package nl.hu.bep.friendspammer.web;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.servlet.RequestDispatcher;
@@ -19,35 +20,23 @@ public class EmailServlet extends HttpServlet {
     }
     
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String method = request.getParameter("method");
+        EmailRequest emailRequest = new EmailRequest(request);
+        List<String> errors = emailRequest.getErrors();
         
-        if (method == null) {
-            request.setAttribute("message", "De methode is niet ingevuld!");
+        if (errors.size() > 0) {
+            request.setAttribute("errors", errors);
             
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);
+            return;
         }
         
-        if (!method.equals("email") && !method.equals("sms")) {
-            request.setAttribute("message", "De ingevoerde methode bestaat niet!");
-            
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
-            dispatcher.forward(request, response);
-        }
-        
-        if (method.equals("sms")) {
-            request.setAttribute("message", "De methode SMS wordt niet ondersteud!");
-            
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
-            dispatcher.forward(request, response);
-        }
-        
-        if (method.equals("email")) {
+        if (emailRequest.getMethod().equals("email")) {
             Email email = new Email();
-            email.setTo(Email.splitTo(request.getParameter("to")));
-            email.setSubject(request.getParameter("subject"));
-            email.setMessageBody(request.getParameter("messageBody"));
-            email.setAsHtml(Boolean.valueOf(request.getParameter("asHtml")));
+            email.setTo(emailRequest.getTo());
+            email.setSubject(emailRequest.getSubject());
+            email.setMessageBody(emailRequest.getMessageBody());
+            email.setAsHtml(emailRequest.getAsHtml());
             
             try {
                 EmailSender.sendEmail(email);

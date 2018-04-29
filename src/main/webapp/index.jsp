@@ -24,6 +24,15 @@
 			<c:if test="${message != null}">
 				<div id="message">${message}</div>
 			</c:if>
+			<c:if test="${errors != null}">
+				<div id="errors">
+				<c:forEach items="${errors}" var="error">
+					<ul>
+						<li><c:out value="${error}" /></li>
+					</ul>
+				</c:forEach>
+				</div>
+			</c:if>
 			<h1>E-mail versturen</h1>
 			<p>Hier kun je mailen naar al je vrienden! Bij "aan" kan je één enkel e-mailadres opgeven of een comma seperated list.</p>
 
@@ -65,8 +74,8 @@
 						<label>Methode</label>
 					</div>
 					<div class="col-input">
-						Email <input type="radio" name="method" value="email" checked="checked" /><br />
-						SMS <input type="radio" name="method" value="sms" disabled /> * werkt nog niet
+						<input type="radio" name="method" value="email" checked="checked" /> Email<br />
+						<input type="radio" name="method" value="sms" disabled /> SMS (werkt nog niet)
 					</div>
 				</div>
 				<div class="row">
