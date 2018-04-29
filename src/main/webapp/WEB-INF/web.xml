@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>FriendSpammer</display-name>
   <servlet>
     <servlet-name>EmailServlet</servlet-name>
     <servlet-class>nl.hu.bep.friendspammer.web.EmailServlet</servlet-class>
@@ -13,11 +13,11 @@
   
   <servlet-mapping>
     <servlet-name>EmailServlet</servlet-name>
-    <url-pattern>/EmailServlet</url-pattern>
+    <url-pattern>/send-email</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
     <servlet-name>HistoryServlet</servlet-name>
-    <url-pattern>/HistoryServlet</url-pattern>
+    <url-pattern>/history</url-pattern>
   </servlet-mapping>
 </web-app>

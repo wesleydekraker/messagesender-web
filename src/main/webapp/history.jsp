@@ -1,35 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Al verstuurde berichten!</title>
+	<meta charset="UTF-8">
+	<title>Verzonden berichten!</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<p>Alle verstuurde berichten</p>
-	<table border="1">
-		<thead>
-			<tr>
-				<td>Aan:</td>
-				<td>Van:</td>
-				<td>Onderwerp:</td>
-				<td>Text:</td>
-				<td>HTML:</td>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${emails}" var="email">
-			<tr>
-				<td>${email.to}</td>
-				<td>${email.from}</td>
-				<td>${email.subject}</td>
-				<td>${email.messageBody}</td>
-				<td>${email.asHtml}</td>
-			</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	<header>
+		<h1>FriendSpammer</h1>
+	</header>
+
+	<div class="container">
+		<nav>
+			<ul>
+				<li><a href=".">E-mail versturen</a></li>
+				<li><a href="#" class="active">Verzonden e-mails</a></li>
+			</ul>
+		</nav>
+
+		<article>
+			<h1>Verzonden e-mails</h1>
+			<table id="history">
+				<tr>
+					<th>Aan</th>
+					<th>Van</th>
+					<th>Onderwerp</th>
+					<th>Bericht</th>
+					<th>HTML</th>
+				</tr>
+				<c:forEach items="${emails}" var="email">
+					<tr>
+						<td><c:forEach items="${email.to}" var="to">
+								<c:out value="${to}" /><br>
+							</c:forEach></td>
+						<td><c:out value="${email.from}" /></td>
+						<td><c:out value="${email.subject}" /></td>
+						<td><c:out value="${email.messageBody}" /></td>
+						<td><c:out value="${email.asHtml}" /></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</article>
+	</div>
+	
+	<footer>Copyright &copy; Wesley de Kraker</footer>
 </body>
 </html>

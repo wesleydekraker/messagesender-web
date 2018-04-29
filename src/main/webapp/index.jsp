@@ -1,28 +1,81 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>    
-    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome!</title>
+	<meta charset="UTF-8">
+	<title>Email versturen</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<h1>Friend Spammer!</h1>
-<p>Hier kan je email naar al je vrienden! Bij aan kan je één enkele emailadres opgeven maar je kan er ook een comma seperated lijst opgeven.</p>
+	<header>
+		<h1>FriendSpammer</h1>
+	</header>
 
-<form action="EmailServlet" method="post">
-	aan: <input type="text" name="to" value="naam@voorbeeld.nl" size="100"/><br/>
-	onderwerp: <input type="text" name="subject"/><br/>
-	bericht: <textarea name="messageBody" rows="5" cols="60"></textarea><br/>
-	verstuur als html?: <input type="checkbox" 	name="asHtml" value="true"/>	<br/>
-	email <input type="radio" name="methode" value="email" checked="checked"/> of sms <input type="radio" name="methode" value="sms" disabled/> (sorry sms werkt nog niet)
-	<br/>
-	<input value="spammen maar!" type="submit">
-</form>
+	<div class="container">
+		<nav>
+			<ul>
+				<li><a href="#" class="active">E-mail versturen</a></li>
+				<li><a href="history">Verzonden e-mails</a></li>
+			</ul>
+		</nav>
 
-<p><a href="HistoryServlet">history</a	><p>
+		<article>
+			<c:if test="${message != null}">
+				<div id="message">${message}</div>
+			</c:if>
+			<h1>E-mail versturen</h1>
+			<p>Hier kun je mailen naar al je vrienden! Bij "aan" kan je Ã©Ã©n enkel e-mailadres opgeven of een comma seperated list.</p>
 
+			<form action="send-email" method="post" id="send-email">
+				<div class="row">
+					<div class="col-label">
+						<label for="fname">Aan</label>
+					</div>
+					<div class="col-input">
+						<input type="text" name="to" placeholder="naam@voorbeeld.nl">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-label">
+						<label>Onderwerp</label>
+					</div>
+					<div class="col-input">
+						<input type="text" name="subject" placeholder="Voorbeeld">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-label">
+						<label>Bericht</label>
+					</div>
+					<div class="col-input">
+						<textarea name="messageBody" placeholder="Schrijf iets..." id="messageBody"></textarea>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-label">
+						<label>Verstuur als HTML</label>
+					</div>
+					<div class="col-input">
+						<input type="checkbox" name="asHtml" value="true" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-label">
+						<label>Methode</label>
+					</div>
+					<div class="col-input">
+						Email <input type="radio" name="method" value="email" checked="checked" /><br />
+						SMS <input type="radio" name="method" value="sms" disabled /> * werkt nog niet
+					</div>
+				</div>
+				<div class="row">
+					<input type="submit" value="Verstuur">
+				</div>
+			</form>
+		</article>
+	</div>
 
+	<footer>Copyright &copy; Wesley de Kraker</footer>
 </body>
 </html>
