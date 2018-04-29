@@ -35,7 +35,7 @@ public class EmailRequest {
         }
         
         if (!method.equals("email") && !method.equals("sms")) {
-            errors.add("De methode is niet ingevuld!");
+            errors.add("De ingevulde methode bestaat niet!");
             return;
         }
         
