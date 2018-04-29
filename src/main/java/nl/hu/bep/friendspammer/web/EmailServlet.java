@@ -1,33 +1,53 @@
 package nl.hu.bep.friendspammer.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 
 import javax.mail.MessagingException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import nl.hu.bep.friendspammer.helper.Email;
 import nl.hu.bep.friendspammer.helper.EmailSender;
 
 public class EmailServlet extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {        
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
-        dispatcher.forward(request, response);
+    static final Logger logger = LoggerFactory.getLogger(EmailServlet.class);
+    
+    private static final String INDEX_PAGE = "/index.jsp";
+    
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.getRequestDispatcher(INDEX_PAGE).forward(request, response);
+        } catch (ServletException | IOException e) {
+            StringWriter stackTrace = new StringWriter();
+            e.printStackTrace(new PrintWriter(stackTrace));
+            logger.debug(stackTrace.toString());
+        }
     }
     
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {        
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) {        
         EmailRequest emailRequest = new EmailRequest(request);
         List<String> errors = emailRequest.getErrors();
         
-        if (errors.size() > 0) {
+        if (errors.isEmpty()) {
             request.setAttribute("errors", errors);
             
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
-            dispatcher.forward(request, response);
+            try {
+                request.getRequestDispatcher(INDEX_PAGE).forward(request, response);
+            } catch (ServletException | IOException e) {
+                StringWriter stackTrace = new StringWriter();
+                e.printStackTrace(new PrintWriter(stackTrace));
+                logger.debug(stackTrace.toString());
+            }
             return;
         }
         
@@ -39,15 +59,21 @@ public class EmailServlet extends HttpServlet {
             email.setAsHtml(emailRequest.getAsHtml());
             
             try {
-                EmailSender.sendEmail(email);
+                EmailSender emailSender = new EmailSender();
+                emailSender.sendEmail(email);
+                logger.info("Email send!");
                 request.setAttribute("message", "De e-mail is verstuurd!");
             } catch (MessagingException e) {
-                e.printStackTrace();
                 request.setAttribute("message", "Er ging iets mis bij het versturen!");                
             }
         }
         
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
-        dispatcher.forward(request, response);
+        try {
+            request.getRequestDispatcher(INDEX_PAGE).forward(request, response);
+        } catch (ServletException | IOException e) {
+            StringWriter stackTrace = new StringWriter();
+            e.printStackTrace(new PrintWriter(stackTrace));
+            logger.debug(stackTrace.toString());
+        }
     }
 }
