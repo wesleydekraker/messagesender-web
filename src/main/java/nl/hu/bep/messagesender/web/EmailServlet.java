@@ -1,4 +1,4 @@
-package nl.hu.bep.friendspammer.web;
+package nl.hu.bep.messagesender.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import nl.hu.bep.friendspammer.helper.Email;
-import nl.hu.bep.friendspammer.helper.EmailSender;
+import nl.hu.bep.messagesender.helper.Email;
+import nl.hu.bep.messagesender.helper.EmailSender;
 
 public class EmailServlet extends HttpServlet {
     static final Logger logger = LoggerFactory.getLogger(EmailServlet.class);

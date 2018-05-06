@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
-  <display-name>FriendSpammer</display-name>
+  <display-name>MessageSender</display-name>
   <servlet>
     <servlet-name>EmailServlet</servlet-name>
-    <servlet-class>nl.hu.bep.friendspammer.web.EmailServlet</servlet-class>
+    <servlet-class>nl.hu.bep.messagesender.web.EmailServlet</servlet-class>
   </servlet>
   
   <servlet>
     <servlet-name>HistoryServlet</servlet-name>
-    <servlet-class>nl.hu.bep.friendspammer.web.HistoryServlet</servlet-class>
+    <servlet-class>nl.hu.bep.messagesender.web.HistoryServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>

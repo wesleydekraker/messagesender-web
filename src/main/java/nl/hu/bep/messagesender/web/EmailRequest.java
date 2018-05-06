@@ -1,11 +1,11 @@
-package nl.hu.bep.friendspammer.web;
+package nl.hu.bep.messagesender.web;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import nl.hu.bep.friendspammer.helper.Email;
+import nl.hu.bep.messagesender.helper.Email;
 
 public class EmailRequest {
     private String method;

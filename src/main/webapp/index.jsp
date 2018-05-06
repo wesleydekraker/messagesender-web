@@ -9,7 +9,7 @@
 </head>
 <body>
 	<header>
-		<h1>FriendSpammer</h1>
+		<h1>MessageSender</h1>
 	</header>
 
 	<div class="container">
