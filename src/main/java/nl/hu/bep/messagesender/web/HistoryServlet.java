@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import nl.hu.bep.messagesender.helper.MongoRepository;
 
 public class HistoryServlet extends HttpServlet {
+    private static final long serialVersionUID = -957770403214501738L;
+
     static final Logger logger = LoggerFactory.getLogger(HistoryServlet.class);
     
     private static final String HISTORY_PAGE = "/history.jsp";

@@ -18,6 +18,8 @@ import nl.hu.bep.messagesender.helper.Email;
 import nl.hu.bep.messagesender.helper.EmailSender;
 
 public class EmailServlet extends HttpServlet {
+    private static final long serialVersionUID = 9126574062113985305L;
+
     static final Logger logger = LoggerFactory.getLogger(EmailServlet.class);
     
     private static final String INDEX_PAGE = "/index.jsp";
