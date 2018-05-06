@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>nl.hu.bep</groupId>
-	<artifactId>friendspammer-web</artifactId>
+	<artifactId>messagesender-web</artifactId>
 	<packaging>war</packaging>
 	<version>1.0</version>
-	<name>friendspammer-web</name>
+	<name>messagesender-web</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -25,7 +25,7 @@
 		</dependency>
 		<dependency>
 			<groupId>nl.hu.bep</groupId>
-			<artifactId>friendspammer-helper</artifactId>
+			<artifactId>messagesender-helper</artifactId>
 			<version>1.2</version>
 			<scope>compile</scope>
 		</dependency>
@@ -47,12 +47,12 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>friendspammer-web</finalName>
+		<finalName>messagesender-web</finalName>
 	</build>
 	<repositories>
 	    <repository>
-	    	<id>wesleydekraker-friendspammer</id>
-	    	<url>https://packagecloud.io/wesleydekraker/friendspammer/maven2</url>
+	    	<id>wesleydekraker-messagesender</id>
+	    	<url>https://packagecloud.io/wesleydekraker/messagesender/maven2</url>
 	    	<releases>
 	    		<enabled>true</enabled>
     		</releases>
