@@ -23,6 +23,7 @@ public class EmailServlet extends HttpServlet {
     static final Logger logger = LoggerFactory.getLogger(EmailServlet.class);
     
     private static final String INDEX_PAGE = "/index.jsp";
+    private static final String MESSAGE = "message";
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -64,12 +65,12 @@ public class EmailServlet extends HttpServlet {
                 EmailSender emailSender = new EmailSender();
                 emailSender.sendEmail(email);
                 logger.info("Email send!");
-                request.setAttribute("message", "De e-mail is verstuurd!");
+                request.setAttribute(MESSAGE, "De e-mail is verstuurd!");
             } catch (MessagingException e) {
-                request.setAttribute("message", "Er ging iets mis bij het versturen!");                
+                request.setAttribute(MESSAGE, "Er ging iets mis bij het versturen!");                
             }
         } else {
-            request.setAttribute("message", "De methode SMS wordt nog niet ondersteund!");
+            request.setAttribute(MESSAGE, "De methode SMS wordt nog niet ondersteund!");
         }
         
         try {
